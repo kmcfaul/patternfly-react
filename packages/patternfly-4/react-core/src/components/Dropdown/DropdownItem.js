@@ -28,25 +28,48 @@ const defaultProps = {
   href: '#'
 };
 
-const DropdownItem = ({ className, children, isHovered, component: Component, isDisabled, ...props }) => {
-  const additionalProps = props;
-  if (Component === 'a') {
-    additionalProps['aria-disabled'] = isDisabled;
-    additionalProps.tabIndex = isDisabled ? -1 : additionalProps.tabIndex;
-  } else if (Component === 'button') {
-    additionalProps.disabled = isDisabled;
+class DropdownItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
-  return (
-    <li>
-      <Component
-        {...additionalProps}
-        className={css(isDisabled && styles.modifiers.disabled, isHovered && styles.modifiers.hover, className)}
-      >
-        {children}
-      </Component>
-    </li>
-  );
-};
+
+  onKeyDown = event => {
+    if (event.key === 'Tab') return;
+    event.preventDefault();
+    if (event.key === 'ArrowUp') {
+      console.log('arrow up pressed');
+      this.props.keyHandler(this.ref);
+    } else if (event.key === 'ArrowDown') {
+      console.log('arrow down pressed');
+      this.props.keyHandler(this.ref);
+    }
+  };
+
+  render() {
+    const { className, children, isHovered, keyHandler, component: Component, isDisabled, ...props } = this.props;
+    const additionalProps = props;
+    if (Component === 'a') {
+      additionalProps['aria-disabled'] = isDisabled;
+      additionalProps.tabIndex = isDisabled ? -1 : additionalProps.tabIndex;
+    } else if (Component === 'button') {
+      additionalProps.disabled = isDisabled;
+    }
+    return (
+      <li>
+        <Component
+          {...additionalProps}
+          className={css(isDisabled && styles.modifiers.disabled, isHovered && styles.modifiers.hover, className)}
+          ref={ref => (this.ref = ref)}
+          onKeyDown={this.onKeyDown}
+        >
+          {children}
+        </Component>
+      </li>
+    );
+  }
+}
 
 DropdownItem.propTypes = propTypes;
 DropdownItem.defaultProps = defaultProps;

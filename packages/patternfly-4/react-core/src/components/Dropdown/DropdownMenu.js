@@ -27,25 +27,27 @@ const defaultProps = {
   component: 'ul'
 };
 
-const DropdownMenu = ({ className, isOpen, position, children, component: Component, ...props }) => {
-  let menu = null;
-  if (Component === 'div') {
-    menu = (
-      <Component
-        {...props}
-        className={css(
-          styles.dropdownMenu,
-          position === DropdownPosition.right && styles.modifiers.alignRight,
-          className
-        )}
-        hidden={!isOpen}
-      >
-        {children}
-      </Component>
-    );
-  } else if (Component === 'ul') {
-    menu = (
-      <FocusTrap>
+class DropdownMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.keyHandler = this.keyHandler.bind(this);
+  }
+
+  componentDidMount() {
+    console.log('menu', this.refs);
+  }
+
+  keyHandler(ref) {
+    console.log('handled', ref);
+    console.log(this.props.children);
+  }
+
+  render() {
+    const { className, isOpen, position, children, component: Component, ...props } = this.props;
+    let menu = null;
+    console.log('menu', children);
+    if (Component === 'div') {
+      menu = (
         <Component
           {...props}
           className={css(
@@ -55,13 +57,31 @@ const DropdownMenu = ({ className, isOpen, position, children, component: Compon
           )}
           hidden={!isOpen}
         >
-          {children}
+          {children &&
+            React.Children.map(children, child => React.cloneElement(child, { keyHandler: this.keyHandler }))}
         </Component>
-      </FocusTrap>
-    );
+      );
+    } else if (Component === 'ul') {
+      menu = (
+        <FocusTrap>
+          <Component
+            {...props}
+            className={css(
+              styles.dropdownMenu,
+              position === DropdownPosition.right && styles.modifiers.alignRight,
+              className
+            )}
+            hidden={!isOpen}
+          >
+            {children &&
+              React.Children.map(children, child => React.cloneElement(child, { keyHandler: this.keyHandler }))}
+          </Component>
+        </FocusTrap>
+      );
+    }
+    return menu;
   }
-  return menu;
-};
+}
 
 DropdownMenu.propTypes = propTypes;
 DropdownMenu.defaultProps = defaultProps;
