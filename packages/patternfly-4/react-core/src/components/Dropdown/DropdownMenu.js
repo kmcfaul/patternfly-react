@@ -30,16 +30,52 @@ const defaultProps = {
 class DropdownMenu extends React.Component {
   constructor(props) {
     super(props);
+    this.refsCollection = {};
     this.keyHandler = this.keyHandler.bind(this);
   }
 
-  componentDidMount() {
-    console.log('menu', this.refs);
+  keyHandler(index, position) {
+    const kids = this.props.children;
+    console.log(`current index: ${index}`);
+    let nextIndex;
+    if (position === 'up') {
+      if (index === 0) {
+        // loop back to end
+        nextIndex = kids.length - 1;
+      } else {
+        nextIndex = index - 1;
+      }
+    } else if (index === kids.length - 1) {
+      // loop back to beginning
+      nextIndex = 0;
+    } else {
+      nextIndex = index + 1;
+    }
+    if (this.refsCollection[`item-${nextIndex}`] === null) {
+      console.log(`${nextIndex} is disabled`);
+      this.keyHandler(nextIndex, position);
+    } else {
+      console.log(`focusing ${nextIndex}`);
+      this.refsCollection[`item-${nextIndex}`].focus();
+    }
   }
 
-  keyHandler(ref) {
-    console.log('handled', ref);
-    console.log(this.props.children);
+  sendRef = (index, node, isDisabled) => {
+    if (isDisabled || node.getAttribute('role') === 'separator') {
+      this.refsCollection[`item-${index}`] = null;
+    } else {
+      this.refsCollection[`item-${index}`] = node;
+    }
+  };
+
+  extendChildren() {
+    return React.Children.map(this.props.children, (child, index) =>
+      React.cloneElement(child, {
+        keyHandler: this.keyHandler,
+        index,
+        sendRef: this.sendRef
+      })
+    );
   }
 
   render() {
@@ -58,13 +94,18 @@ class DropdownMenu extends React.Component {
           hidden={!isOpen}
         >
           {children &&
-            React.Children.map(children, child => React.cloneElement(child, { keyHandler: this.keyHandler }))}
+            React.Children.map(children, (child, index) =>
+              React.cloneElement(child, {
+                keyHandler: this.keyHandler,
+                index
+              })
+            )}
         </Component>
       );
     } else if (Component === 'ul') {
       menu = (
         <FocusTrap>
-          <Component
+          <ul
             {...props}
             className={css(
               styles.dropdownMenu,
@@ -73,9 +114,8 @@ class DropdownMenu extends React.Component {
             )}
             hidden={!isOpen}
           >
-            {children &&
-              React.Children.map(children, child => React.cloneElement(child, { keyHandler: this.keyHandler }))}
-          </Component>
+            {this.extendChildren()}
+          </ul>
         </FocusTrap>
       );
     }

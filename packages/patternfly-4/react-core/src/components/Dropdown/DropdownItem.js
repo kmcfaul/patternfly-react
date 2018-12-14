@@ -16,7 +16,10 @@ const propTypes = {
   /** Forces display of the hover state of the element */
   isHovered: PropTypes.bool,
   /** Default hyperlink location */
-  href: PropTypes.string
+  href: PropTypes.string,
+  keyHandler: PropTypes.func,
+  index: PropTypes.number,
+  sendRef: PropTypes.func
 };
 
 const defaultProps = {
@@ -25,7 +28,10 @@ const defaultProps = {
   isHovered: false,
   component: 'a',
   isDisabled: false,
-  href: '#'
+  href: '#',
+  keyHandler: () => undefined,
+  index: -1,
+  sendRef: () => undefined
 };
 
 class DropdownItem extends React.Component {
@@ -35,20 +41,36 @@ class DropdownItem extends React.Component {
     this.onKeyDown = this.onKeyDown.bind(this);
   }
 
+  componentDidMount() {
+    this.props.sendRef(this.props.index, this.ref, this.props.isDisabled);
+  }
+
   onKeyDown = event => {
+    // Detected key press on this item, notify the menu parent so that the appropriate
+    // item can be focused
     if (event.key === 'Tab') return;
     event.preventDefault();
     if (event.key === 'ArrowUp') {
       console.log('arrow up pressed');
-      this.props.keyHandler(this.ref);
+      this.props.keyHandler(this.props.index, 'up');
     } else if (event.key === 'ArrowDown') {
       console.log('arrow down pressed');
-      this.props.keyHandler(this.ref);
+      this.props.keyHandler(this.props.index, 'down');
     }
   };
 
   render() {
-    const { className, children, isHovered, keyHandler, component: Component, isDisabled, ...props } = this.props;
+    const {
+      className,
+      children,
+      isHovered,
+      keyHandler,
+      component: Component,
+      isDisabled,
+      index,
+      sendRef,
+      ...props
+    } = this.props;
     const additionalProps = props;
     if (Component === 'a') {
       additionalProps['aria-disabled'] = isDisabled;
@@ -61,8 +83,8 @@ class DropdownItem extends React.Component {
         <Component
           {...additionalProps}
           className={css(isDisabled && styles.modifiers.disabled, isHovered && styles.modifiers.hover, className)}
-          ref={ref => (this.ref = ref)}
           onKeyDown={this.onKeyDown}
+          ref={ref => (this.ref = ref)}
         >
           {children}
         </Component>
