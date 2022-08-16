@@ -3,6 +3,355 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.77.2 (2022-08-16)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.77.1 (2022-08-16)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+# 4.77.0 (2022-08-16)
+
+
+### Features
+
+* Allow for 'next' and 'deprecated' react-core subpaths ([#7824](https://github.com/patternfly/patternfly-react/issues/7824)) ([0e68bd3](https://github.com/patternfly/patternfly-react/commit/0e68bd349e9a8b4b08bb8b777358dcde41d5462f))
+
+
+
+
+
+## 4.76.9 (2022-08-15)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.76.8 (2022-08-11)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.76.7 (2022-08-10)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.76.6 (2022-08-10)
+
+
+### Reverts
+
+* Revert "feat(VisualizationSurface): replace react-measure with react-resize-detector (#7706)" (#7809) ([3c9cd8f](https://github.com/patternfly/patternfly-react/commit/3c9cd8f32d621f30aef0a4d4e0aa892b08354e7b)), closes [#7706](https://github.com/patternfly/patternfly-react/issues/7706) [#7809](https://github.com/patternfly/patternfly-react/issues/7809)
+
+
+
+
+
+## 4.76.5 (2022-08-05)
+
+
+### Bug Fixes
+
+* **MenuToggle:** update base type to include div attributes as well ([#7798](https://github.com/patternfly/patternfly-react/issues/7798)) ([330e496](https://github.com/patternfly/patternfly-react/commit/330e496a7f1fb715ab06a6f6d118f1db8705828a))
+
+
+
+
+
+## 4.76.4 (2022-08-05)
+
+
+### Bug Fixes
+
+* **MenuToggle:** undo type change causing errors ([#7797](https://github.com/patternfly/patternfly-react/issues/7797)) ([1031ecb](https://github.com/patternfly/patternfly-react/commit/1031ecbeb5b4fa7eb28ed9c035454c7b408b8da8))
+
+
+
+
+
+## 4.76.3 (2022-08-04)
+
+
+### Bug Fixes
+
+* **charts:** remove uniqueId generation for labels and axis ticks ([#7794](https://github.com/patternfly/patternfly-react/issues/7794)) ([9c44131](https://github.com/patternfly/patternfly-react/commit/9c4413119f14e3e45a1ed12bd870120e278ebc20))
+
+
+
+
+
+## 4.76.2 (2022-08-03)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.76.1 (2022-08-03)
+
+
+### Bug Fixes
+
+* **Menu:** can navigate via keyboard for checkbox variant ([#7743](https://github.com/patternfly/patternfly-react/issues/7743)) ([7cfa876](https://github.com/patternfly/patternfly-react/commit/7cfa87682c225c3e93d6c4e0925b3c34aaede633))
+
+
+
+
+
+# 4.76.0 (2022-08-03)
+
+
+### Features
+
+* **MenuToggle:** add split button variants ([#7748](https://github.com/patternfly/patternfly-react/issues/7748)) ([7577725](https://github.com/patternfly/patternfly-react/commit/7577725305533791481ac22d9b36b87d5d3167b1))
+
+
+
+
+
+## 4.75.1 (2022-08-02)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+# 4.75.0 (2022-08-01)
+
+
+### Features
+
+* **Page:** add support for vertical breakpoints, add sticky breadcrumb demo ([#7764](https://github.com/patternfly/patternfly-react/issues/7764)) ([9db582d](https://github.com/patternfly/patternfly-react/commit/9db582d63a3499fa78ea8fab3ce31b7877cd479d))
+
+
+
+
+
+# 4.74.0 (2022-08-01)
+
+
+### Features
+
+* **DescriptionList:** add Display and Card variants ([#7713](https://github.com/patternfly/patternfly-react/issues/7713)) ([8c6e6d8](https://github.com/patternfly/patternfly-react/commit/8c6e6d83cdbe989d306c64f945aac206eac3ff91))
+
+
+
+
+
+## 4.73.1 (2022-08-01)
+
+
+### Bug Fixes
+
+* **Menu/Nav:** flyout variants work with VO navigation ([#7772](https://github.com/patternfly/patternfly-react/issues/7772)) ([6ad76cc](https://github.com/patternfly/patternfly-react/commit/6ad76cc1b466e8e93773f58002acf5ca54ad6e36))
+
+
+
+
+
+# 4.73.0 (2022-07-29)
+
+
+### Features
+
+* **Tabs:** add horizontal overflow option ([#7742](https://github.com/patternfly/patternfly-react/issues/7742)) ([2745cd1](https://github.com/patternfly/patternfly-react/commit/2745cd199669b0c0a5cdbd5c3d4e7453c6e1c435))
+
+
+
+
+
+## 4.72.9 (2022-07-28)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.72.8 (2022-07-28)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.72.7 (2022-07-28)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.72.6 (2022-07-28)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.72.5 (2022-07-27)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.72.4 (2022-07-27)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.72.3 (2022-07-27)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.72.2 (2022-07-27)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.72.1 (2022-07-26)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+# 4.72.0 (2022-07-26)
+
+
+### Features
+
+* **Dropdown:** added secondary styling to split action button ([#7746](https://github.com/patternfly/patternfly-react/issues/7746)) ([e701c32](https://github.com/patternfly/patternfly-react/commit/e701c32bb36097770ecb2c3e17e15df0b720488f))
+
+
+
+
+
+## 4.71.2 (2022-07-26)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.71.1 (2022-07-26)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+# 4.71.0 (2022-07-26)
+
+
+### Features
+
+* **topology:** Pipelines support for badges/icons variable task node width ([#7697](https://github.com/patternfly/patternfly-react/issues/7697)) ([a499273](https://github.com/patternfly/patternfly-react/commit/a49927315cd61e84a007d05b49e5d7254b977fcb))
+
+
+
+
+
+## 4.70.11 (2022-07-25)
+
+
+### Bug Fixes
+
+* **Select:** remove variant check from update logic ([#7741](https://github.com/patternfly/patternfly-react/issues/7741)) ([2204cb6](https://github.com/patternfly/patternfly-react/commit/2204cb62e30b4a37b82731f1380e79a3085828ef))
+
+
+
+
+
+## 4.70.10 (2022-07-25)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.70.9 (2022-07-21)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.70.8 (2022-07-21)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.70.7 (2022-07-20)
+
+
+### Bug Fixes
+
+* **Switch:** aria labelledby to update with change ([#7557](https://github.com/patternfly/patternfly-react/issues/7557)) ([9647a0c](https://github.com/patternfly/patternfly-react/commit/9647a0c7f7eb2174f006774b4406408bd065fddc))
+
+
+
+
+
+## 4.70.6 (2022-07-20)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
+## 4.70.5 (2022-07-19)
+
+**Note:** Version bump only for package @patternfly/react-inline-edit-extension
+
+
+
+
+
 ## 4.70.4 (2022-07-15)
 
 

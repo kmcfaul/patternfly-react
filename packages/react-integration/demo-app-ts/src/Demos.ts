@@ -7,6 +7,8 @@ interface DemoInterface {
   name: string;
   /** Demo component associated with the demo  */
   componentType: any;
+  /** Flag if this is the default demo */
+  isDefault?: boolean;
 }
 /** Add the name of the demo and it's component here to have them show up in the demo app */
 export const Demos: DemoInterface[] = [
@@ -399,6 +401,11 @@ export const Demos: DemoInterface[] = [
     id: 'tabs-disabled-demo',
     name: 'Tabs Disabled Demo',
     componentType: Examples.TabsDisabledDemo
+  },
+  {
+    id: 'tabs-horizontal-overflow-demo',
+    name: 'Tabs Horizontal Overflow Demo',
+    componentType: Examples.TabsHorizontalOverflowDemo
   },
   {
     id: 'table-collapsible-demo',

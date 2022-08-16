@@ -173,6 +173,12 @@ export interface ChartLegendProps extends VictoryLegendProps {
    */
   labelComponent?: React.ReactElement<any>;
   /**
+   * The name prop is typically used to reference a component instance when defining shared events. However, this
+   * optional prop may also be applied to child elements as an ID prefix. This is a workaround to ensure Victory
+   * based components output unique IDs when multiple charts appear in a page.
+   */
+  name?: string;
+  /**
    * The orientation prop takes a string that defines whether legend data
    * are displayed in a row or column. When orientation is "horizontal",
    * legend items will be displayed in a single row. When orientation is
@@ -325,6 +331,7 @@ export const ChartLegend: React.FunctionComponent<ChartLegendProps> = ({
   containerComponent = <ChartContainer />,
   dataComponent = <ChartPoint />,
   labelComponent = <ChartLabel />,
+  name,
   patternScale,
   responsive = true,
   style,
@@ -367,16 +374,27 @@ export const ChartLegend: React.FunctionComponent<ChartLegendProps> = ({
     ...containerComponent.props
   });
 
+  const getLabelComponent = () =>
+    React.cloneElement(labelComponent, {
+      ...(name && { id: (props: any) => `${name}-${(labelComponent as any).type.displayName}-${props.index}` }),
+      ...labelComponent.props
+    });
+
+  const getTitleComponent = () =>
+    React.cloneElement(titleComponent, {
+      ...titleComponent.props
+    });
+
   // Note: containerComponent is required for theme
   return (
     <VictoryLegend
       colorScale={colorScale}
       containerComponent={container}
       dataComponent={dataComponent}
-      labelComponent={labelComponent}
+      labelComponent={getLabelComponent()}
       style={getDefaultStyle()}
       theme={theme}
-      titleComponent={titleComponent}
+      titleComponent={getTitleComponent()}
       {...rest}
     />
   );
@@ -388,6 +406,7 @@ hoistNonReactStatics(ChartLegend, VictoryLegend, { getBaseProps: true });
 
 (ChartLegend as any).getBaseProps = (props: any) => {
   const theme = getTheme(null);
+
   return (VictoryLegend as any).getBaseProps(
     {
       titleComponent: <ChartLabel />, // Workaround for getBaseProps error

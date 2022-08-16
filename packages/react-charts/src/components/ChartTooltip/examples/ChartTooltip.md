@@ -51,14 +51,15 @@ import { Chart, ChartArea, ChartAxis, ChartGroup, ChartVoronoiContainer } from '
 
 <div style={{ height: '200px', width: '800px' }}>
   <Chart
-    ariaDesc="Average number of pets"
-    ariaTitle="Area chart example"
+    ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+    ariaTitle="Area chart example chart title"
     containerComponent={<ChartVoronoiContainer labels={({ datum }) => `${datum.name}: ${datum.y}`} constrainToVisibleArea />}
     legendData={[{ name: 'Cats' }, { name: 'Dogs' }, { name: 'Birds' }]}
     legendOrientation="vertical"
     legendPosition="right"
     height={200}
     maxDomain={{y: 9}}
+    name="chart1"
     padding={{
       bottom: 50,
       left: 50,
@@ -120,8 +121,8 @@ class CombinedCursorVoronoiContainer extends React.Component {
     return (
       <div style={{ height: '275px', width: '450px' }}>
         <Chart
-          ariaDesc="Average number of pets"
-          ariaTitle="Line chart example"
+          ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+          ariaTitle="Line chart example chart title"
           containerComponent={
             <CursorVoronoiContainer
               cursorDimension="x"
@@ -136,6 +137,7 @@ class CombinedCursorVoronoiContainer extends React.Component {
           height={275}
           maxDomain={{y: 10}}
           minDomain={{y: 0}}
+          name="chart2"
           padding={{
             bottom: 75, // Adjusted to accommodate legend
             left: 50,
@@ -210,7 +212,8 @@ class EmbeddedLegend extends React.Component {
     return (
       <div style={{ height: '275px', width: '450px' }}>
         <Chart
-          ariaDesc="Average number of pets"
+          ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+          ariaTitle="Embedded legend example chart title"
           containerComponent={
             <CursorVoronoiContainer
               cursorDimension="x"
@@ -226,6 +229,7 @@ class EmbeddedLegend extends React.Component {
           height={275}
           maxDomain={{y: 10}}
           minDomain={{y: 0}}
+          name="chart3"
           padding={{
             bottom: 75, // Adjusted to accommodate legend
             left: 50,
@@ -346,8 +350,8 @@ class EmbeddedHtml extends React.Component {
     return (
       <div ref={this.containerRef} style={{ height: '225px', width: '650px' }}>
         <Chart
-          ariaDesc="Average number of pets"
-          ariaTitle="Area chart example"
+          ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+          ariaTitle="Embedded html example chart title"
           containerComponent={
             <CursorVoronoiContainer
               cursorDimension="x"
@@ -369,6 +373,7 @@ class EmbeddedHtml extends React.Component {
           legendData={legendData}
           legendPosition="bottom-left"
           height={225}
+          name="chart4"
           padding={{
             bottom: 75, // Adjusted to accommodate legend
             left: 50,
@@ -440,7 +445,8 @@ class EmbeddedLegendAlt extends React.Component {
     return (
       <div style={{ height: '275px', width: '450px' }}>
         <Chart
-          ariaDesc="Average number of pets"
+          ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+          ariaTitle="Embeded legend with custom font size example chart title"
           containerComponent={
             <CursorVoronoiContainer
               cursorDimension="x"
@@ -456,6 +462,7 @@ class EmbeddedLegendAlt extends React.Component {
           height={275}
           maxDomain={{y: 10}}
           minDomain={{y: 0}}
+          name="chart5"
           padding={{
             bottom: 75, // Adjusted to accommodate legend
             left: 50,
@@ -527,12 +534,13 @@ import { Chart, ChartAxis, ChartBar, ChartStack, ChartThemeColor, ChartTooltip }
 
 <div style={{ height: '275px', width: '450px' }}>
   <Chart
-    ariaDesc="Average number of pets"
-    ariaTitle="Stack chart example"
+    ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+    ariaTitle="Data label example chart title"
     domainPadding={{ x: [30, 25] }}
     legendData={[{ name: 'Cats' }, { name: 'Dogs' }, { name: 'Birds' }, { name: 'Mice' }]}
     legendPosition="bottom-left"
     height={275}
+    name="chart6"
     padding={{
       bottom: 75, // Adjusted to accommodate legend
       left: 50,
@@ -619,8 +627,8 @@ class TooltipPieChart extends React.Component {
     return (
       <div style={{ height: '275px', width: '300px' }}>
         <ChartPie
-          ariaDesc="Average number of pets"
-          ariaTitle="Pie chart example"
+          ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+          ariaTitle="Legend example chart title"
           constrainToVisibleArea
           data={[{ x: 'Cats', y: 35 }, { x: 'Dogs', y: 55 }, { x: 'Birds', y: 10 }]}
           height={275}
@@ -631,6 +639,7 @@ class TooltipPieChart extends React.Component {
             { name: 'Birds: 10' }
           ])}
           legendPosition="bottom"
+          name="chart7"
           padding={{
             bottom: 65,
             left: 20,
@@ -680,8 +689,8 @@ class TooltipThemeChart extends React.Component {
     return (
       <div style={{ height: '250px', width: '600px' }}>
         <Chart
-          ariaDesc="Average number of pets"
-          ariaTitle="Line chart example"
+          ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+          ariaTitle="Left aligned example chart title"
           containerComponent={<ChartVoronoiContainer labels={({ datum }) => `${datum.name}: ${datum.y}`} constrainToVisibleArea voronoiDimension="x"/>}
           legendData={[{ name: 'Cats' }, { name: 'Dogs', symbol: { type: 'dash' } }, { name: 'Birds' }, { name: 'Mice' }]}
           legendOrientation="vertical"
@@ -689,6 +698,7 @@ class TooltipThemeChart extends React.Component {
           height={250}
           maxDomain={{y: 10}}
           minDomain={{y: 0}}
+          name="chart8"
           padding={{
             bottom: 50,
             left: 50,
@@ -757,11 +767,12 @@ import { ChartArea, ChartContainer, ChartGroup, ChartLabel, ChartThemeColor, Cha
 <div className="ws-react-charts-tooltip-overflow">
   <div style={{ height: '100px', width: '400px' }}>
     <ChartGroup
-      ariaDesc="Average number of pets"
-      ariaTitle="Sparkline chart example"
+      ariaDesc="Average number of pets - possibly more information to summarize the data in the chart."
+      ariaTitle="CSS overflow example chart title"
       containerComponent={<ChartVoronoiContainer labels={({ datum }) => `${datum.name}: ${datum.y}`} />}
       height={100}
       maxDomain={{y: 9}}
+      name="chart9"
       padding={0}
       themeColor={ChartThemeColor.green}
       width={400}
@@ -776,7 +787,7 @@ import { ChartArea, ChartContainer, ChartGroup, ChartLabel, ChartThemeColor, Cha
       />
     </ChartGroup>
   </div>
-  <ChartContainer>
+  <ChartContainer title="CPU utilization">
     <ChartLabel text="CPU utilization" dy={15}/>
   </ChartContainer>
 </div>
@@ -811,10 +822,11 @@ class TooltipChart extends React.Component {
           <Tooltip content={<div>My custom tooltip</div>} isVisible={isVisible} position={TooltipPosition.right} trigger="manual">
             <ChartDonutThreshold
               allowTooltip={false}
-              ariaDesc="Storage capacity"
-              ariaTitle="Donut utilization chart with static threshold example"
+              ariaDesc="Storage capacity  - possibly more information to summarize the data in the chart."
+              ariaTitle="Wrapped example chart title"
               data={[{ x: 'Warning at 60%', y: 60 }, { x: 'Danger at 90%', y: 90 }]}
               labels={() => null}
+              name="chart10"
             >
               <ChartDonutUtilization
                 allowTooltip={false}

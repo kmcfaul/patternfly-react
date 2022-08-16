@@ -37,6 +37,7 @@ import { ChartArea, ChartContainer, ChartGroup, ChartLabel, ChartVoronoiContaine
       containerComponent={<ChartVoronoiContainer labels={({ datum }) => `${datum.name}: ${datum.y}`} constrainToVisibleArea />}
       height={100}
       maxDomain={{y: 9}}
+      name="chart1"
       padding={0}
       width={400}
     >
@@ -50,7 +51,7 @@ import { ChartArea, ChartContainer, ChartGroup, ChartLabel, ChartVoronoiContaine
       />
     </ChartGroup>
   </div>
-  <ChartContainer>
+  <ChartContainer title="CPU utilization">
     <ChartLabel text="CPU utilization" dy={15}/>
   </ChartContainer>
 </div>
@@ -72,6 +73,7 @@ import { ChartArea, ChartContainer, ChartGroup, ChartLabel, ChartThemeColor, Cha
       containerComponent={<ChartVoronoiContainer labels={({ datum }) => `${datum.name}: ${datum.y}`} />}
       height={100}
       maxDomain={{y: 9}}
+      name="chart2"
       padding={0}
       themeColor={ChartThemeColor.green}
       width={400}
@@ -86,7 +88,7 @@ import { ChartArea, ChartContainer, ChartGroup, ChartLabel, ChartThemeColor, Cha
       />
     </ChartGroup>
   </div>
-  <ChartContainer>
+  <ChartContainer title="CPU utilization">
     <ChartLabel text="CPU utilization" dy={15}/>
   </ChartContainer>
 </div>

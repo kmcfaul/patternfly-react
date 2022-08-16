@@ -18,6 +18,7 @@ import { VictoryAxis, VictoryAxisProps, VictoryAxisTTargetType } from 'victory-a
 import { ChartContainer } from '../ChartContainer';
 import { ChartThemeDefinition } from '../ChartTheme';
 import { getAxisTheme, getTheme } from '../ChartUtils';
+import { ChartLabel } from '../ChartLabel';
 
 /**
  * ChartAxis renders a single axis which can be used on its own or composed with Chart.
@@ -231,7 +232,9 @@ export interface ChartAxisProps extends VictoryAxisProps {
    */
   minDomain?: number | { x?: number; y?: number };
   /**
-   * ChartAxis uses the standard name prop
+   * The name prop is typically used to reference a component instance when defining shared events. However, this
+   * optional prop may also be applied to child elements as an ID prefix. This is a workaround to ensure Victory
+   * based components output unique IDs when multiple charts appear in a page.
    */
   name?: string;
   /**
@@ -446,11 +449,12 @@ export interface ChartAxisProps extends VictoryAxisProps {
 
 export const ChartAxis: React.FunctionComponent<ChartAxisProps> = ({
   containerComponent = <ChartContainer />,
+  name,
   showGrid = false,
   themeColor,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   themeVariant,
-
+  tickLabelComponent = <ChartLabel />,
   // destructure last
   theme = getTheme(themeColor),
   ...rest
@@ -461,8 +465,23 @@ export const ChartAxis: React.FunctionComponent<ChartAxisProps> = ({
     ...containerComponent.props
   });
 
+  const getTickLabelComponent = () =>
+    React.cloneElement(tickLabelComponent, {
+      ...(name && {
+        id: (props: any) => `${name}-${(tickLabelComponent as any).type.displayName}-${props.index}`
+      }),
+      ...tickLabelComponent.props
+    });
+
   // Note: containerComponent is required for theme
-  return <VictoryAxis containerComponent={container} theme={showGrid ? getAxisTheme(themeColor) : theme} {...rest} />;
+  return (
+    <VictoryAxis
+      containerComponent={container}
+      theme={showGrid ? getAxisTheme(themeColor) : theme}
+      tickLabelComponent={getTickLabelComponent()}
+      {...rest}
+    />
+  );
 };
 ChartAxis.displayName = 'ChartAxis';
 

@@ -2,7 +2,17 @@
 
 exports[`renders default truncation 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    data-testid="Tooltip-mock"
+  >
+    <div
+      data-testid="Tooltip-mock-content-container"
+    >
+      Test Vestibulum interdum risus et enim faucibus, sit amet molestie est accumsan.
+    </div>
+    <p>
+      position: top
+    </p>
     <span
       class="pf-c-truncate"
     >
@@ -16,30 +26,19 @@ exports[`renders default truncation 1`] = `
 </DocumentFragment>
 `;
 
-exports[`renders middle truncation 1`] = `
+exports[`renders start truncation with &lrm; at end 1`] = `
 <DocumentFragment>
-  <div>
-    <span
-      class="pf-c-truncate"
+  <div
+    data-testid="Tooltip-mock"
+  >
+    <div
+      data-testid="Tooltip-mock-content-container"
     >
-      <span
-        class="pf-c-truncate__start"
-      >
-        Vestibulum interdum risus et enim faucibus, sit amet molestie est ac
-      </span>
-      <span
-        class="pf-c-truncate__end"
-      >
-        cumsan.
-      </span>
-    </span>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`renders start truncation 1`] = `
-<DocumentFragment>
-  <div>
+      Test Vestibulum interdum risus et enim faucibus, sit amet molestie est accumsan.
+    </div>
+    <p>
+      position: top
+    </p>
     <span
       class="pf-c-truncate"
     >

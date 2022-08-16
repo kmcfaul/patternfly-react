@@ -222,6 +222,34 @@ describe('Wizard', () => {
     expect(main).toBeInTheDocument();
     expect(main).toHaveAttribute('aria-labelledby', 'main-aria-labelledby');
   });
+
+  test('wiz with onCurrentStepChanged setter', () => {
+    const stepA = { name: 'A', component: <p>Step 1</p> };
+    const stepB = { name: 'B', component: <p>Step 2</p> };
+    const stepC = { name: 'C', component: <p>Step 3</p> };
+
+    const steps: WizardStep[] = [ stepA, stepB, stepC ];
+    const setter = jest.fn();
+
+    render(
+        <Wizard
+            title="Wiz title"
+            onCurrentStepChanged={ setter }
+            steps={steps}
+        />
+    );
+    expect(setter).toHaveBeenLastCalledWith(expect.objectContaining(stepA));
+    userEvent.click(screen.getByText(/next/i));
+    expect(setter).toHaveBeenLastCalledWith(expect.objectContaining(stepB));
+    userEvent.click(screen.getByText(/next/i));
+    expect(setter).toHaveBeenLastCalledWith(expect.objectContaining(stepC));
+    userEvent.click(screen.getByText('A'));
+    expect(setter).toHaveBeenLastCalledWith(expect.objectContaining(stepA));
+    userEvent.click(screen.getByText(/next/i));
+    expect(setter).toHaveBeenLastCalledWith(expect.objectContaining(stepB));
+    userEvent.click(screen.getByText(/back/i));
+    expect(setter).toHaveBeenLastCalledWith(expect.objectContaining(stepA));
+  });
 });
 
   test('wiz with disabled steps', () => {
@@ -314,3 +342,34 @@ describe('Wizard', () => {
 
     expect(screen.getByRole('button',{ name: "A-2" })).toBeDisabled();
   });
+
+test('startAtStep can be used to externally control the current step of the wizard', () => {
+  const WizardTest = () => {
+    const [step, setStep] = React.useState(1);
+
+    const incrementStep = () => {
+      setStep(prevStep => prevStep + 1);
+    };
+
+    const steps: WizardStep[] = [
+      { name: 'A', component: <p>Step 1</p> },
+      { name: 'B', component: <p>Step 2</p> },
+      { name: 'C', component: <p>Step 3</p> }
+    ];
+
+    return (
+      <>
+        <Wizard steps={steps} startAtStep={step} />
+        <button onClick={() => incrementStep()}>Increment step</button>
+      </>
+    );
+  };
+
+  render(<WizardTest />);
+
+  expect(screen.queryByText('Step 2')).not.toBeInTheDocument();
+
+  userEvent.click(screen.getByRole('button', { name: 'Increment step'}))
+
+  expect(screen.getByText('Step 2')).toBeVisible();
+});
