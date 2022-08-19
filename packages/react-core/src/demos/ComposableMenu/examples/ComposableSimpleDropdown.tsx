@@ -47,38 +47,36 @@ export const ComposableSimpleDropdown: React.FunctionComponent = () => {
 
   const toggle = (triggerElement, setTriggerElement) => {
     if (triggerElement) {
-      // setMyTriggerElement(triggerElement);
       toggleRef.current = triggerElement;
-      debugger;
     }
     return (
-    <MenuToggle ref={setTriggerElement} onClick={onToggleClick} isExpanded={isOpen}>
-      {isOpen ? 'Expanded' : 'Collapsed'}
-    </MenuToggle>
-  )};
+      <MenuToggle ref={setTriggerElement} onClick={onToggleClick} isExpanded={isOpen}>
+        {isOpen ? 'Expanded' : 'Collapsed'}
+      </MenuToggle>
+    );
+  };
   const menu = (popperElement, setPopperElement) => {
     if (popperElement) {
-      // setMyPopperElement(popperElement);
       menuRef.current = popperElement;
-      debugger;
     }
     return (
-    // eslint-disable-next-line no-console
-    <Menu ref={setPopperElement} onSelect={(_ev, itemId) => console.log('selected', itemId)}>
-      <MenuContent>
-        <MenuList>
-          <MenuItem itemId={0}>Action</MenuItem>
-          <MenuItem itemId={1} to="#default-link2" onClick={ev => ev.preventDefault()}>
-            Link
-          </MenuItem>
-          <MenuItem isDisabled>Disabled Action</MenuItem>
-          <MenuItem isDisabled to="#default-link4">
-            Disabled Link
-          </MenuItem>
-        </MenuList>
-      </MenuContent>
-    </Menu>
-  )};
+      // eslint-disable-next-line no-console
+      <Menu ref={setPopperElement} onSelect={(_ev, itemId) => console.log('selected', itemId)}>
+        <MenuContent>
+          <MenuList>
+            <MenuItem itemId={0}>Action</MenuItem>
+            <MenuItem itemId={1} to="#default-link2" onClick={ev => ev.preventDefault()}>
+              Link
+            </MenuItem>
+            <MenuItem isDisabled>Disabled Action</MenuItem>
+            <MenuItem isDisabled to="#default-link4">
+              Disabled Link
+            </MenuItem>
+          </MenuList>
+        </MenuContent>
+      </Menu>
+    );
+  };
   return (
     <React.StrictMode>
       <div ref={containerRef}>
