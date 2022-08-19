@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { usePopper } from './thirdparty/react-popper/usePopper';
 import { Placement, BasePlacement, Modifier } from './thirdparty/popper-core';
 import { css } from '@patternfly/react-styles';
+import { FindRefWrapper } from './FindRefWrapper';
 import '@patternfly/react-styles/css/components/Popper/Popper.css';
 
 const hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
@@ -40,7 +41,7 @@ export interface PopperProps {
    */
   reference?: HTMLElement | (() => HTMLElement) | React.RefObject<any>;
   /** The popper (menu/tooltip/popover) element */
-  popper: React.ReactElement;
+  popper: any;
   /** True to set the width of the popper element to the trigger element's width */
   popperMatchesTriggerWidth?: boolean;
   /** popper direction */
@@ -312,7 +313,7 @@ export const Popper: React.FunctionComponent<PopperProps> = ({
     return positionModifiers.top;
   };
 
-  const menuWithPopper = React.cloneElement(popper, {
+  const options = {
     className: css(popper.props && popper.props.className, positionModifiers && modifierFromPopperPosition()),
     style: {
       ...((popper.props && popper.props.style) || {}),
@@ -320,7 +321,8 @@ export const Popper: React.FunctionComponent<PopperProps> = ({
       zIndex
     },
     ...attributes.popper
-  });
+  };
+  const menuWithPopper = React.cloneElement(popper, options);
 
   const getTarget: () => HTMLElement = () => {
     if (typeof appendTo === 'function') {
@@ -331,9 +333,20 @@ export const Popper: React.FunctionComponent<PopperProps> = ({
 
   return (
     <>
-      {!reference && trigger && typeof trigger === 'object' && <div ref={handleTrigger}>{trigger}</div>}
-      {!reference && trigger && typeof trigger === 'function' && trigger(setTriggerElement)}
-      {ready && isVisible && ReactDOM.createPortal(<div ref={handlePopper}>{menuWithPopper}</div>, getTarget())}
+      {!reference && trigger && typeof trigger === 'object' && (
+        <FindRefWrapper onFoundRef={(foundRef: any) => setTriggerElement(foundRef)}>{trigger}</FindRefWrapper>
+      )}
+      {!reference && trigger && typeof trigger === 'function' && trigger(triggerElement, setTriggerElement)}
+      {ready &&
+        isVisible &&
+        ReactDOM.createPortal(
+          typeof popper !== 'function' ? (
+            <FindRefWrapper onFoundRef={(foundRef: any) => setPopperElement(foundRef)}>{menuWithPopper}</FindRefWrapper>
+          ) : (
+            popper(popperElement, setPopperElement)
+          ),
+          getTarget()
+        )}
     </>
   );
 };

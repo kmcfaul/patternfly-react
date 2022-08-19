@@ -120,14 +120,16 @@ export const ComposableActionsMenu: React.FunctionComponent = () => {
   );
 
   return (
-    <div ref={containerRef}>
-      <Popper
-        trigger={toggle}
-        popper={menu}
-        isVisible={isOpen}
-        appendTo={containerRef.current}
-        popperMatchesTriggerWidth={false}
-      />
-    </div>
+    <React.StrictMode>
+      <div ref={containerRef}>
+        <Popper
+          trigger={toggle}
+          popper={menu}
+          isVisible={isOpen}
+          appendTo={containerRef.current}
+          popperMatchesTriggerWidth={false}
+        />
+      </div>
+    </React.StrictMode>
   );
 };

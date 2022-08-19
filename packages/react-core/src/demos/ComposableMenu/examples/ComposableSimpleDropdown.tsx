@@ -45,14 +45,26 @@ export const ComposableSimpleDropdown: React.FunctionComponent = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggle = (
-    <MenuToggle ref={toggleRef} onClick={onToggleClick} isExpanded={isOpen}>
+  const toggle = (triggerElement, setTriggerElement) => {
+    if (triggerElement) {
+      // setMyTriggerElement(triggerElement);
+      toggleRef.current = triggerElement;
+      debugger;
+    }
+    return (
+    <MenuToggle ref={setTriggerElement} onClick={onToggleClick} isExpanded={isOpen}>
       {isOpen ? 'Expanded' : 'Collapsed'}
     </MenuToggle>
-  );
-  const menu = (
+  )};
+  const menu = (popperElement, setPopperElement) => {
+    if (popperElement) {
+      // setMyPopperElement(popperElement);
+      menuRef.current = popperElement;
+      debugger;
+    }
+    return (
     // eslint-disable-next-line no-console
-    <Menu ref={menuRef} onSelect={(_ev, itemId) => console.log('selected', itemId)}>
+    <Menu ref={setPopperElement} onSelect={(_ev, itemId) => console.log('selected', itemId)}>
       <MenuContent>
         <MenuList>
           <MenuItem itemId={0}>Action</MenuItem>
@@ -66,10 +78,12 @@ export const ComposableSimpleDropdown: React.FunctionComponent = () => {
         </MenuList>
       </MenuContent>
     </Menu>
-  );
+  )};
   return (
-    <div ref={containerRef}>
-      <Popper trigger={toggle} popper={menu} appendTo={containerRef.current} isVisible={isOpen} />
-    </div>
+    <React.StrictMode>
+      <div ref={containerRef}>
+        <Popper trigger={toggle} popper={menu} appendTo={containerRef.current} isVisible={isOpen} />
+      </div>
+    </React.StrictMode>
   );
 };
